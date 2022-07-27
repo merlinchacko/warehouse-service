@@ -1,5 +1,6 @@
-package com.spring.cloud.warehouseservice.model;
+package com.spring.cloud.warehouseservice.domain.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class Location
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column
     private String name;
 }
