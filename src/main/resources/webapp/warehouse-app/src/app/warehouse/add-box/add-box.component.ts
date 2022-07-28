@@ -6,6 +6,7 @@ import {Product} from "../product";
 import {ProductService} from "../product-service.service";
 import {Location} from "../location";
 import {LocationService} from "./location-service.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-box',
@@ -48,8 +49,13 @@ export class AddBoxComponent implements OnInit {
   onSubmit() {
     this.boxService.addBox(this.addForm.value)
       .subscribe(data => {
-        this.router.navigate(['list-boxes']);
-      });
+          this.router.navigate(['list-boxes']);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          this.addForm.reset();
+        }
+      );
   }
 
   change(e) {

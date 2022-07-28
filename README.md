@@ -1,115 +1,65 @@
 # warehouse-service
-Service provides creation and fetch of warehouse products.
-http://localhost:8080/swagger-ui.html
-# Vehicles API
+Service provides creation and fetch of warehouse boxes.
 
-A REST API to maintain vehicle data and to provide a complete
-view of vehicle details including price and address.
+## Assumptions
+- Products are unique and locations can be reused
 
 ## Features
 
-- REST API exploring the main HTTP verbs and features
-- Hateoas
-- Custom API Error handling using `ControllerAdvice`
-- Swagger API docs
-- HTTP WebClient
-- MVC Test
-- Automatic model mapping
+- User should be able to create warehouse boxes
+- User should be able to create warehouse products
+- Get all warehouse boxes details based on search query parameter
+- Used Spring boot to create the microservice and JPA to store and fetch data from database.
+- Used in-memory H2 database.
+
 
 ## Instructions
 
 #### TODOs
 
-- Implement the `TODOs` within the `CarService.java` and `CarController.java`  files
-- Add additional tests to the `CarControllerTest.java` file based on the `TODOs`
-- Implement API documentation using Swagger
+- Implement angular form to create a product(Currently set of locations and products are added to db on start of application)
+- Add additional tests to the `BoxService.java` to check the search and sorting
+- Docker image
 
 #### Run the Code
 
-To properly run this application you need to start the Orders API and
-the Service API first.
+Run warehouse service > ./gradlew bootRun
+Run warehouse app in the path (warehouse-service\src\main\resources\webapp\warehouse-app>) > ng serve
 
-
-```
-$ mvn clean package
-```
-
-```
-$ java -jar target/vehicles-api-0.0.1-SNAPSHOT.jar
-```
-
-Import it in your favorite IDE as a Maven Project.
+Single page application will be available here -> http://localhost:4200/add-box
 
 ## Operations
 
 Swagger UI: http://localhost:8080/swagger-ui.html
 
-### Create a Vehicle
+### Create a Box
 
-`POST` `/cars`
+`POST` `/warehouse/box`
 ```json
+
 {
-   "condition":"USED",
-   "details":{
-      "body":"sedan",
-      "model":"Impala",
-      "manufacturer":{
-         "code":101,
-         "name":"Chevrolet"
-      },
-      "numberOfDoors":4,
-      "fuelType":"Gasoline",
-      "engine":"3.6L V6",
-      "mileage":32280,
-      "modelYear":2018,
-      "productionYear":2018,
-      "externalColor":"white"
-   },
-   "location":{
-      "lat":40.73061,
-      "lon":-73.935242
-   }
+  "description": "Box-1",
+  "locationId": 1,
+  "productId": 1
 }
 ```
 
-### Retrieve a Vehicle
+### Retrieve a Box
 
-`GET` `/cars/{id}`
+`GET` `/warehouse/box/search?query='query'`
 
-This feature retrieves the Vehicle data from the database
-and access the Pricing Service and Boogle Maps to enrich
-the Vehicle information to be presented
+This feature retrieves the Box data(product name and location) from the database based on query parameter.
 
-### Update a Vehicle
+### Create a Product
 
-`PUT` `/cars/{id}`
-
+`POST` `/warehouse/product`
 ```json
+
 {
-   "condition":"USED",
-   "details":{
-      "body":"sedan",
-      "model":"Impala",
-      "manufacturer":{
-         "code":101,
-         "name":"Chevrolet"
-      },
-      "numberOfDoors":4,
-      "fuelType":"Gasoline",
-      "engine":"3.6L V6",
-      "mileage":32280,
-      "modelYear":2018,
-      "productionYear":2018,
-      "externalColor":"white"
-   },
-   "location":{
-      "lat":40.73061,
-      "lon":-73.935242
-   }
+  "id": 1
+  "name": "product"
 }
 ```
 
-### Delete a Vehicle
 
-`DELETE` `/cars/{id}`
 

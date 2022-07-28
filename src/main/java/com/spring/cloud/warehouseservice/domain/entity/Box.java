@@ -38,7 +38,7 @@ public class Box
     private Product product;
 
     @OneToOne
-    @JoinColumn(name = "location_id", nullable = false, referencedColumnName = "id", unique = true)
+    @JoinColumn(name = "location_id", nullable = false, referencedColumnName = "id")
     private Location location;
 
     public Box(final String description, final Product product, final Location location)
