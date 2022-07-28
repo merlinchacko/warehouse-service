@@ -19,14 +19,25 @@ Service provides creation and fetch of warehouse boxes.
 
 - Implement angular form to create a product(Currently set of locations and products are added to db on start of application)
 - Add additional tests to the `BoxService.java` to check the search and sorting
-- Docker image
 
-#### Run the Code
+
+#### Run service locally
 
 Run warehouse service > ./gradlew bootRun
 Run warehouse app in the path (warehouse-service\src\main\resources\webapp\warehouse-app>) > ng serve
 
 Single page application will be available here -> http://localhost:4200/add-box
+
+#### Run services using Docker
+
+Use docker images which are pushed to docker hub
+Backend - https://hub.docker.com/repository/docker/merlinchacko/warehouse-service-backend
+ run -> docker run -e JASYPT_PASSWORD='merlin' --name="warehouse-service-backend" --publish 8080:8080
+frontend - https://hub.docker.com/repository/docker/merlinchacko/warehouse-service-frontend
+ run -> docker run  --name="warehouse-service-frontend" --publish 9001:4200
+
+To run with one command use -> `docker compose up` (not working currently)
+
 
 ## Operations
 
