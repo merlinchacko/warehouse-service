@@ -3,8 +3,8 @@ package com.spring.cloud.warehouseservice.exception;
 public class IdNotFoundException extends RuntimeException
 {
 
-    public IdNotFoundException(Long id)
+    public IdNotFoundException(String item, Long id)
     {
-        super("Id - " + id + "not found");
+        super(item + "Id - " + id + " not found");
     }
 }

@@ -11,10 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         http.authorizeRequests()
-            .antMatchers("/**").hasRole("WAREHOUSE_ADMIN")
-            .anyRequest().permitAll()
+            .antMatchers("/warehouse/**").permitAll()
+            .and()
+            .authorizeRequests()
+            .antMatchers("/actuator/**").hasRole("WAREHOUSE_ADMIN")
+            .anyRequest().authenticated()
             .and()
             .httpBasic()
             .and().csrf().disable();

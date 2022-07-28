@@ -1,0 +1,39 @@
+<h3><u><i>Warehouse App </i></u></h3>
+
+<form class="example-form" (ngSubmit)="onSearch()">
+  <mat-form-field class="example-full-width">
+    <span matPrefix> </span>
+    <input type="text" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
+    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+  </mat-form-field>
+  <br/>
+  {{search}}
+</form>
+
+<table mat-table [dataSource]="boxes" class="mat-elevation-z8 table">
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let box"> {{box.description}} </td>
+  </ng-container>
+  <ng-container matColumnDef="product">
+    <th mat-header-cell *matHeaderCellDef> Product </th>
+    <td mat-cell *matCellDef="let box"> {{box.product.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="location">
+    <th mat-header-cell *matHeaderCellDef> Location </th>
+    <td mat-cell *matCellDef="let box"> {{box.location.name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let box; columns: columnsToDisplay"></tr>
+</table>
+
+<br/>
+<br/>
+<div>
+  <p>
+    <button mat-raised-button color="primary" (click)="addBox()">Add Box</button>
+<!--    <button (click)="addBox()"> Add Box</button>-->
+  </p>
+</div>
+<router-outlet></router-outlet>

@@ -30,10 +30,10 @@ public class BoxService
     public Box save(final BoxRequest boxRequest)
     {
         Optional<Location> locationOpt = locationRepository.findById(boxRequest.getLocationId());
-        Location location = locationOpt.orElseThrow(() -> new IdNotFoundException(boxRequest.getLocationId()));
+        Location location = locationOpt.orElseThrow(() -> new IdNotFoundException("Location", boxRequest.getLocationId()));
 
         Optional<Product> productOpt = productRepository.findById(boxRequest.getProductId());
-        Product product = productOpt.orElseThrow(() -> new IdNotFoundException(boxRequest.getProductId()));
+        Product product = productOpt.orElseThrow(() -> new IdNotFoundException("Product", boxRequest.getProductId()));
 
         Box box = new Box(boxRequest.getDescription(), product, location);
 

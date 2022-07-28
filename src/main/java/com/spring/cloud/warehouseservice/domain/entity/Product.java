@@ -36,6 +36,7 @@ public class Product
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column
     private ProductType type;
 
     public Product(final String name, final ProductType type)

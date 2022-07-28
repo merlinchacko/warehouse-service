@@ -1,5 +1,7 @@
 package com.spring.cloud.warehouseservice.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,5 +24,10 @@ public class ProductService
         Product product = new Product(productRequest.getName(), productRequest.getType());
 
         return productRepository.save(product);
+    }
+
+    public List<Product> getAll()
+    {
+        return productRepository.findAll();
     }
 }

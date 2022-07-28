@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ import lombok.AllArgsConstructor;
 @Validated
 @RestController
 @RequestMapping("/warehouse/box")
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 @Api(produces = "application/json", value = "Warehouse boxes", tags = {"Boxes"})
 public class BoxController
